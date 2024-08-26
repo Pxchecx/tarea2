@@ -18,6 +18,17 @@ class _OperacionesAritmeticasState extends State<OperacionesAritmeticas> {
   double? _resultado;
 
   void _calcularResultado() {
+    // Verificar si ambos campos están vacíos
+    if (_primerValorController.text.isEmpty || _segundoValorController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('INGRESA UN NÚMERO'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
     final double primerValor = double.tryParse(_primerValorController.text) ?? 0;
     final double segundoValor = double.tryParse(_segundoValorController.text) ?? 0;
     switch (_operacionSeleccionada) {
@@ -51,7 +62,7 @@ class _OperacionesAritmeticasState extends State<OperacionesAritmeticas> {
               controller: _primerValorController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                labelText: 'Porfavor Ingrese el primer digito',
+                labelText: 'Porfavor Ingrese el primer dígito',
                 hintText: 'Ingrese un número',
               ),
             ),
@@ -60,7 +71,7 @@ class _OperacionesAritmeticasState extends State<OperacionesAritmeticas> {
               controller: _segundoValorController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                labelText: 'Porfavor Ingrese el segundo digito',
+                labelText: 'Porfavor Ingrese el segundo dígito',
                 hintText: 'Ingrese un número',
               ),
             ),
